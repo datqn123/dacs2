@@ -28,4 +28,11 @@ class UserController extends Controller
             'users'
         ));
     }
+
+    public function create() {
+        $template = 'backend.user.create';
+        return view('backend.dashboard.layout', compact(
+            'template',
+        ));
+    }
 }

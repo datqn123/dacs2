@@ -27,8 +27,11 @@ Route::get('/', function () {
 Route::get('dashboard/index', [DashboardController::class, 'index'])->name('dashboard.index')->middleware(AuthenticateMiddleware::class);
 
 // USER
-Route::get('user/index', [UserController::class, 'index'])->name('user.index')->middleware(AuthenticateMiddleware::class);
-
+Route::group(['prefix' => 'user'], function(){
+    Route::get('index', [UserController::class, 'index'])->name('user.index')->middleware(AuthenticateMiddleware::class);
+    Route::get('create', [UserController::class, 'create'])->name('user.create')->middleware(AuthenticateMiddleware::class);
+}
+);
 
 
 Route::post('login', [AuthController::class, 'login'])->name('auth.login');
